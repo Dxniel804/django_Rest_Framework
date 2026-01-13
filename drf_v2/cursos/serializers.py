@@ -6,10 +6,12 @@ class CursoSerializer(serializers.ModelSerializer):
         model = Curso
         fields = ['id', 'titulo', 'url', 'ativo']
 
-class AvaliacaoSerializer(serializers.ModelSerializer):
+class AvaliacaoSerializer(serializers.HyperlinkedModelSerializer):
+    curso = serializers.HyperlinkedRelatedField(
+        view_name='curso-detail',
+        queryset=Curso.objects.all()
+    )
+
     class Meta:
-        extra_kwargs = {
-            'curso': {'write_only': True}
-        }
         model = Avaliacao   
         fields = ['id', 'curso', 'nome', 'email', 'comentario', 'avaliacao', 'ativo']

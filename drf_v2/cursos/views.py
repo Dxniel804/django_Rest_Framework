@@ -64,7 +64,7 @@ class CursoViewSet(viewsets.ModelViewSet):
             return self.get_paginated_response(serializer.data)
 
 
-        # Pega todas as avaliações relacionadas ao curso  
+        # Pega todas as avaliações relacionadas ao curso    
         serializer = AvaliacaoSerializer(avaliacoes.all(), many=True) # Many=True diz que isso é uma lista
         return Response(serializer.data)
 
